@@ -22,7 +22,7 @@ export const registerController = async (req , res) => {
             return res.send({error:'Address is reqired'})
         }
         
-        //check user
+        
         const exisitingUser = await userModel.findOne({email})
         //exisiting user
         if(exisitingUser){
