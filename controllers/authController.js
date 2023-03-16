@@ -21,8 +21,7 @@ export const registerController = async (req , res) => {
         if(!address){
             return res.send({error:"Address is reqired"});
         }
-        
-        //chekck user
+
         const exisitingUser = await userModel.findOne({email})
 
         //exisiting user
@@ -113,6 +112,9 @@ export const registerController = async (req , res) => {
             error
         })
     }
- }
+ };
+ export const testController = (req, res) => {
+    res.send("Protected Route");
+ };
 
 
