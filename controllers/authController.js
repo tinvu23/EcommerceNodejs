@@ -7,19 +7,19 @@ export const registerController = async (req , res) => {
         const {name,email,password,phone,address} = req.body;
         //validations
         if(!name){
-            return res.send({error:"Name is reqired"});
+            return res.send({message:"Name is reqired"});
         }
         if(!email){
-            return res.send({error:"Email is reqired"});
+            return res.send({message:"Email is reqired"});
         }
         if(!password){
-            return res.send({error:"Password is reqired"});
+            return res.send({message:"Password is reqired"});
         }
         if(!phone){
-            return res.send({error:"Phone no is reqired"});
+            return res.send({message:"Phone no is reqired"});
         }
         if(!address){
-            return res.send({error:"Address is reqired"});
+            return res.send({message:"Address is reqired"});
         }
 
         const exisitingUser = await userModel.findOne({email})
@@ -27,7 +27,7 @@ export const registerController = async (req , res) => {
         //exisiting user
         if(exisitingUser){
             return res.status(200).send({
-                success:true,
+                success:false,
                 message:"Already Register please login",
             })
         }
@@ -93,7 +93,7 @@ export const registerController = async (req , res) => {
             {expiresIn: "7d",
         });
 
-        res.status(200).send({
+        res.status(201).send({
             success:true,
             message:"Login Successfully",
             user:{
