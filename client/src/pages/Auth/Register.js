@@ -11,33 +11,33 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
-   // const [answer, setAnswer] = useState("");
+    const [answer, setAnswer] = useState("");
     const navigate = useNavigate();
 
 
     //form-funtion
     const handleSubmit = async (e) => {
-         e.preventDefault();         
+        e.preventDefault();
         try {
-          const res = await axios.post("/api/v1/auth/register", {
-            name,
-            email,
-            password,
-            phone,
-            address,
-         //   answer,
-          });
-          if (res && res.data.success) {
-            toast.success(res.data && res.data.message);
-            navigate("/login");
-          } else {
-            toast.error(res.data.message);
-          }
+            const res = await axios.post("/api/v1/auth/register", {
+                name,
+                email,
+                password,
+                phone,
+                address,
+                answer,
+            });
+            if (res && res.data.success) {
+                toast.success(res.data && res.data.message);
+                navigate("/login");
+            } else {
+                toast.error(res.data.message);
+            }
         } catch (error) {
-          console.log(error);
-          toast.error("Something went wrong");
+            console.log(error);
+            toast.error("Something went wrong");
         }
-      };
+    };
 
     return (
         <Layout title={'Register'}>
@@ -104,7 +104,17 @@ const Register = () => {
                             required
                         />
                     </div>
-
+                    <div className="mb-3">
+                        <input
+                            type="text"
+                            value={answer}
+                            onChange={(e) => setAnswer(e.target.value)}
+                            className="form-control"
+                            id="exampleInputEmail1"
+                            placeholder="What is your favorite handbag brand?"
+                            required
+                        />
+                    </div>
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
 

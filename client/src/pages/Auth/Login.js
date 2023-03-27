@@ -3,15 +3,16 @@ import Layout from '../../components/Layout/Layout'
 import { toast } from 'react-hot-toast';
 import axios from "axios";
 import "C:/Users/PC/EcommerceNodejs/client/src/styles/AuthStyle.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 const Login = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [auth, setAuth] = useAuth();
-    // const [answer, setAnswer] = useState("");
+    const [answer, setAnswer] = useState("");
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,7 +31,7 @@ const Login = () => {
                     token: res.data.token,
                 });
                 localStorage.setItem("auth", JSON.stringify(res.data));
-                navigate("/");
+                navigate(location.state || "/");
             } else {
                 toast.error(res.data.message);
             }
@@ -71,11 +72,20 @@ const Login = () => {
                         />
                     </div>
 
-
+                    <div className="mb-3">
+                        <button
+                            type="button"
+                            className="btn forgot-btn"
+                            onClick={() => {
+                                navigate("/forgot-password");
+                            }}
+                        >
+                            Forgot Password
+                        </button>
+                    </div>
 
                     <button type="submit" className="btn btn-primary">Login</button>
                 </form>
-
             </div>
         </Layout>
     )
