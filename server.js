@@ -5,6 +5,7 @@ import morgan from "morgan";
 import authRoutes from "./routes/authRoute.js";
 import connectDB from "./config/db.js";
 import categoryRoute from "./routes/categoryRoute.js";
+import productRoutes from "./routes/productRoutes.js";
 import cors from "cors";
 
 //configure env
@@ -25,6 +26,7 @@ app.use(morgan("dev"));
 //routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/category", categoryRoute);
+app.use("/api/v1/product", productRoutes);
 
 
 //rest api

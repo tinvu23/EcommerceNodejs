@@ -4,25 +4,25 @@ import orderModel from "../models/orderModel.js";
 
 import fs from "fs";
 import slugify from "slugify";
-import braintree from "braintree";
+//import braintree from "braintree";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-//payment gateway
-var gateway = new braintree.BraintreeGateway({
-    environment: braintree.Environment.Sandbox,
-    merchantId: process.env.BRAINTREE_MERCHANT_ID,
-    publicKey: process.env.BRAINTREE_PUBLIC_KEY,
-    privateKey: process.env.BRAINTREE_PRIVATE_KEY,
-});
+// //payment gateway
+// var gateway = new braintree.BraintreeGateway({
+//     environment: braintree.Environment.Sandbox,
+//     merchantId: process.env.BRAINTREE_MERCHANT_ID,
+//     publicKey: process.env.BRAINTREE_PUBLIC_KEY,
+//     privateKey: process.env.BRAINTREE_PRIVATE_KEY,
+// });
 
 export const createProductController = async(req, res) => {
     try {
         const { name, description, price, category, quantity, shipping } =
         req.fields;
         const { photo } = req.files;
-        //alidation
+        //validation
         switch (true) {
             case !name:
                 return res.status(500).send({ error: "Name is Required" });
@@ -56,7 +56,7 @@ export const createProductController = async(req, res) => {
         res.status(500).send({
             success: false,
             error,
-            message: "Error in crearing product",
+            message: "Error in creating product",
         });
     }
 };
@@ -233,7 +233,7 @@ export const productCountController = async(req, res) => {
 // product list base on page
 export const productListController = async(req, res) => {
     try {
-        const perPage = 6;
+        const perPage = 3;
         const page = req.params.page ? req.params.page : 1;
         const products = await productModel
             .find({})
