@@ -4,6 +4,7 @@ import {
     loginController,
     testController,
     forgotPasswordController,
+    updateProfileController,
 } from "../controllers/authController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddlewares.js";
 
@@ -28,6 +29,8 @@ router.post("/forgot-password", forgotPasswordController);
 router.get("/user-auth", requireSignIn,(req ,res) => {
     res.status(200).send({ok: true});
 });
+//update profile
+router.put("/profile", requireSignIn, updateProfileController);
 
 
 //protected admin routes

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { AiFillWarning } from "react-icons/ai";
 import axios from "axios";
 import toast from "react-hot-toast";
-import "../styles/CartStyles.css";
+import "../styles/CartStyle.css";
 
 const CartPage = () => {
   const [auth, setAuth] = useAuth();
@@ -131,7 +131,7 @@ const CartPage = () => {
               <p>Total | Checkout | Payment</p>
               <hr />
               <h4>Total : {totalPrice()} </h4>
-              {/* {auth?.user?.address ? (
+              {auth?.user?.address ? (
                 <>
                   <div className="mb-3">
                     <h4>Current Address</h4>
@@ -172,7 +172,7 @@ const CartPage = () => {
                   ""
                 ) : (
                   <>
-                    <DropIn
+                    {/* <DropIn
                       options={{
                         authorization: clientToken,
                         paypal: {
@@ -180,18 +180,18 @@ const CartPage = () => {
                         },
                       }}
                       onInstance={(instance) => setInstance(instance)}
-                    />
+                    /> */}
 
                     <button
                       className="btn btn-primary"
-                      onClick={handlePayment}
+                     // onClick={handlePayment}
                       disabled={loading || !instance || !auth?.user?.address}
                     >
                       {loading ? "Processing ...." : "Make Payment"}
                     </button>
                   </>
                 )}
-              </div> */}
+              </div>
             </div>
           </div>
         </div>
