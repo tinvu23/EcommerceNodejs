@@ -162,7 +162,6 @@ export const forgotPasswordController = async (req, res) => {
     res.send("Protected Route");
  };
 
-//update prfole
 export const updateProfileController = async (req, res) => {
     try {
       const { name, email, password, address, phone } = req.body;
@@ -196,6 +195,3 @@ export const updateProfileController = async (req, res) => {
       });
     }
   };
-
-
-
